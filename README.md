@@ -98,7 +98,7 @@ There is also legacy support for single message consumers, which process one mes
       ```elixir
       config :kaffe,
         consumer: [
-          endpoints: [kafka: 9092],
+          endpoints: [{"kafka", 9092}],
           topics: ["interesting-topic"],
           consumer_group: "your-app-consumer-group",
           message_handler: MessageProcessor,
@@ -201,7 +201,7 @@ _For backward compatiblitly only, you should use `Kaffe.GroupMemberSupervisor` i
     ```elixir
     config :kaffe,
       consumer: [
-        endpoints: [kafka: 9092], # that's [hostname: kafka_port]
+        endpoints: [{"kafka", 9092}], # that's [{"hostname", kafka_port}]
         topics: ["interesting-topic"], # the topic(s) that will be consumed
         consumer_group: "your-app-consumer-group", # the consumer group for tracking offsets in Kafka
         message_handler: MessageProcessor, # the module from Step 1 that will process messages
@@ -284,7 +284,7 @@ Configure your Kaffe Producer in your mix config
 ```elixir
 config :kaffe,
   producer: [
-    endpoints: [kafka: 9092], # [hostname: port]
+    endpoints: [{"kafka", 9092}], # [{"hostname", port}]
     topics: ["kafka-topic"],
 
     # optional
